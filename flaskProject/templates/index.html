@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makale Arama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Makale Arama</h1>
+        <form action="/" method="post">
+            <label for="anahtar_kelime">Arama yapmak istediğiniz anahtar kelimeyi girin:</label><br>
+            <input type="text" id="anahtar_kelime" name="anahtar_kelime"><br><br>
+            <button type="submit">Ara</button>
+        </form>
+
+        <h2>Sonuçlar:</h2>
+        <ul>
+            {% for makale in makaleler %}
+                <li>
+                    <a href="/makale/{{ makale.link }}">{{ makale.baslik }}</a> - {{ makale.yazar }}
+                    <a href="{{ makale.pdf_link }}" class="btn btn-sm float-left article-tool pdf d-flex align-items-center" title="Makale PDF linki" target="_blank">
+                        <i class="fa fa-file-pdf fa-2x" aria-hidden="true"></i>
+                        <span class="d-md-inline" aria-hidden="true">PDF</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Veritabanı Tabloları</h2>
+        <form action="/veritabani_goster" method="get">
+            <button type="submit">Veritabanını Göster</button>
+        </form>
+
+        {% if tablolar %}
+            <h3>Tablolar</h3>
+            <ul>
+                {% for tablo in tablolar %}
+                    <li>{{ tablo }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

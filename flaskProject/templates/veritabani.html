@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritabanı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Veritabanı</h1>
+        <h2>Makaleler</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Başlık</th>
+                    <th>Yazar</th>
+                    <th>Yayımlanma Tarihi</th>
+                    <th>Yayıncı</th>
+                    <th>Yayın Türü</th>
+                    <th>Anahtar Kelimeler</th>
+                    <th>Özet</th>
+                    <th>Referanslar</th>
+                    <th>Alıntı Sayısı</th>
+                    <th>DOİ</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for makale in makaleler %}
+                    <tr>
+                        <td>{{ makale.baslik }}</td>
+                        <td>{{ makale.yazar }}</td>
+                        <td>{{ makale.tarih }}</td>
+                        <td>{{ makale.yayinci }}</td>
+                        <td>{{ makale.yayin_turu }}</td>
+                        <td>{{ makale.anahtar_kelimeler }}</td>
+                        <td>{{ makale.ozet }}</td>
+                        <td>{{ makale.referanslar }}</td>
+                        <td>{{ makale.alinti_sayisi }}</td>
+                        <td>{{ makale.doi }}</td>
+                        <td>{{ makale.url }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
